@@ -3,16 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --detectOpenHandles --forceExit --runInBand --verbose --watchAll"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.0.0",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "jest": "^27.5.1",
     "morgan": "~1.9.1",
-    "mssql": "^8.1.0"
+    "mssql": "^8.1.0",
+    "supertest": "^6.2.2"
   },
   "type": "module"
 }

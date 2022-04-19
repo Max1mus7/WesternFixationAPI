@@ -1,0 +1,65 @@
+{
+    "Schema": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer",
+                "description": "The unique identifier for the user."
+            },
+            "username": {
+                "type": "string",
+                "description": "The username of the user."
+            },
+            "email": {
+                "type": "string",
+                "description": "The email address of the user."
+            },
+            "password": {
+                "type": "string",
+                "description": "The password of the user."
+            },
+            "role": {
+                "type": "integer",
+                "description": "The role of the user.",
+                "definitions": {
+                    "role": {
+                        "1": "Administrator",
+                        "2": "User",
+                        "3": "Guest",
+                        "-1": "Suspended"
+                    }
+                }
+            }
+        },
+        "required": [
+            "id",
+            "name",
+            "email",
+            "password"
+        ]
+    },
+    "Basic_Example_From_DB": {
+        "id": 1,
+        "username": "TestUser",
+        "email": "test@test.test",
+        "password": "Test_Passw0rd"
+    },
+    "Full_Example_From_DB": {
+        "id": 1,
+        "username": "TestUser",
+        "email": "test@test.test",
+        "password": "Test_Passw0rd",
+        "role": 1
+    },
+    "Basic_Example_To_API": {
+        "username": "TestUser",
+        "email": "test@test.test",
+        "password": "Test_Passw0rd"
+    },
+    "Full_Example_To_API": {
+        "username": "TestUser",
+        "email": "test@test.test",
+        "password": "Test_Passw0rd",
+        "role": 1
+    }
+}

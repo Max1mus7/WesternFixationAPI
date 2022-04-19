@@ -570,6 +570,9 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+#vscode configuration files
+.vscode/
+
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
