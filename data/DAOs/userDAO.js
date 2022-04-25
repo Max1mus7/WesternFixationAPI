@@ -1,4 +1,6 @@
 import { connection } from "../DBAccess/DAOConfig.js";
+import UserSecurity from "../Security/UserSecurity.js";
+import UserValidation from "../Validation/userValidation.js";
 
 export default class userDAO {
     async getAll(){
@@ -18,6 +20,21 @@ export default class userDAO {
                 resultObj = { code: 500, message: err.message };
             // }
         } finally {
+            return resultObj;
+        }
+    }
+
+    async authenticate(user){
+        let resultObj;
+        try{
+            const result = await connection.query`SELECT * FROM WFDB.users WHERE username = ${user.username}`;
+            UserSecurity.checkUserExists(result.recordsets[0][0]);
+            await UserSecurity.comparePassword(user.password, result.recordsets[0][0].Password);
+            resultObj = { code: 200, message: 'Login Successful'};
+        } catch(err){
+            resultObj = { code: 500, message: err.message };
+        }
+        finally{
             return resultObj;
         }
     }
@@ -53,6 +70,8 @@ export default class userDAO {
     async create(user){
         let resultObj;
         try{
+            user.password = await UserSecurity.encryptPassword(user.password);
+            //console.log(user);
             const result = await connection.query`INSERT INTO WFDB.users (username, password, email, role) VALUES (${user.username}, ${user.password}, ${user.email}, ${user.role})`;
             resultObj = { code: 201, queryResult: result.recordsets[0] };
         }

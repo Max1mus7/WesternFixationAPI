@@ -21,6 +21,14 @@ describe('User API Interactions', () => {
         const response = await request(server).get('/users');
         expect(response.status).toBe(200);
     });
+    it('Should successfully log a user in.', async () => {
+        const response = await request(server).post('/users/login').send({
+            username: 'TestUser',
+            password: 'T3stP@ssw0rd',
+        });
+        expect(response.status).toBe(200);
+    });
+
     it('Should successfully create a user in the database', async () => {
         const response = await request(server).post('/users/new').send({
             username: 'TestUser',

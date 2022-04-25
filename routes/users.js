@@ -9,6 +9,11 @@ router.get('/', async (req, res, next) => {
   res.status(response.code).send(response);
 });
 
+router.post('/login', async (req, res, next) => {
+  const response = await dao.authenticate(req.body);
+  res.status(response.code).send(response);
+});
+
 router.get('/:id', async (req, res, next) => {
   const response = await dao.getOne(req.params.id);
   res.status(response.code).send(response);
